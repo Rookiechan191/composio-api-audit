@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Apps, One Question: Can We Build It? — Composio API Access Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12181F;
+    --paper: #F0EFE9;
+    --paper-dim: #E4E2D9;
+    --line: #C9C6BA;
+    --self-serve: #2F7A4F;
+    --self-serve-bg: #E1EEE5;
+    --gated: #B8752E;
+    --gated-bg: #F3E6D3;
+    --blocked: #A6392F;
+    --blocked-bg: #F2DEDA;
+    --unknown: #6B6A62;
+    --unknown-bg: #E9E7DE;
+    --accent: #1F4B99;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+  }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; margin: 0; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- Hero ---- */
+  .hero {
+    border-bottom: 1px solid var(--line);
+    padding: 72px 0 56px;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    line-height: 1.08;
+  }
+  .hero p.lede {
+    max-width: 640px;
+    font-size: 18px;
+    color: #3A3E33;
+    margin-top: 20px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 44px;
+  }
+  .stat {
+    background: var(--paper);
+    padding: 22px 24px;
+  }
+  .stat .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+  }
+  .stat .label {
+    font-size: 13px;
+    color: #57584E;
+    margin-top: 4px;
+  }
+
+  /* ---- Section shell ---- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .section-head { margin-bottom: 32px; max-width: 680px; }
+  .section-head .eyebrow { margin-bottom: 10px; }
+  .section-head h2 { font-size: 28px; }
+  .section-head p { color: #4B4C43; margin-top: 10px; font-size: 15px; }
+
+  /* ---- Category gate bars ---- */
+  .gatebars { display: flex; flex-direction: column; gap: 14px; }
+  .gaterow { display: grid; grid-template-columns: 240px 1fr 130px; align-items: center; gap: 16px; }
+  .gaterow .cat-name { font-size: 14px; font-weight: 500; }
+  .gatebar { height: 26px; display: flex; border-radius: 3px; overflow: hidden; border: 1px solid var(--line); }
+  .seg { height: 100%; }
+  .seg-self { background: var(--self-serve); }
+  .seg-gated { background: var(--gated); }
+  .seg-blocked { background: var(--blocked); }
+  .seg-unknown { background: var(--unknown); }
+  .gaterow .pct { font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: right; color: #4B4C43; }
+  .legend { display: flex; gap: 22px; margin-top: 26px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #3A3E33; }
+  .legend-dot { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+
+  /* ---- Workflow diagram ---- */
+  .workflow { display: flex; align-items: stretch; gap: 0; margin-top: 8px; flex-wrap: wrap; }
+  .wf-step {
+    flex: 1; min-width: 210px;
+    background: var(--paper-dim);
+    border: 1px solid var(--line);
+    padding: 20px 20px 22px;
+    position: relative;
+  }
+  .wf-step + .wf-step { border-left: none; }
+  .wf-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+  .wf-step h3 { font-size: 16px; margin-bottom: 8px; }
+  .wf-step p { font-size: 13px; color: #4B4C43; margin: 0; }
+  .wf-arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; color: var(--accent); font-size: 20px; flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .wf-arrow { width: 100%; transform: rotate(90deg); padding: 4px 0; }
+    .wf-step { border-left: 1px solid var(--line); border-top: none !important; }
+  }
+
+  /* ---- Verification ---- */
+  .verify-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; }
+  @media (max-width: 860px) { .verify-grid { grid-template-columns: 1fr; } }
+  .verify-list { list-style: none; margin: 0; padding: 0; }
+  .verify-list li {
+    display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--paper-dim);
+    font-size: 14px;
+  }
+  .verify-list li:last-child { border-bottom: none; }
+  .v-count { font-family: 'JetBrains Mono', monospace; font-weight: 600; min-width: 34px; color: var(--accent); }
+  .flag-box {
+    background: var(--paper-dim); border: 1px solid var(--line); padding: 22px 24px;
+  }
+  .flag-box h3 { font-size: 15px; margin-bottom: 12px; }
+  .flag-row { font-size: 13px; margin-bottom: 10px; }
+  .flag-row .fname { font-weight: 600; }
+  .flag-row .freason { color: #4B4C43; display: block; margin-top: 2px; }
+  .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 2px 7px; border-radius: 3px; background: var(--blocked-bg); color: var(--blocked); margin-right: 6px; }
+
+  /* ---- Table ---- */
+  .controls { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
+  .controls select, .controls input {
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    padding: 9px 12px; border: 1px solid var(--line); background: var(--paper);
+    border-radius: 3px; color: var(--ink);
+  }
+  .controls input { flex: 1; min-width: 220px; }
+  .count-note { font-size: 12px; color: #6B6A62; margin-left: auto; font-family: 'JetBrains Mono', monospace; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--paper); }
+  thead th {
+    text-align: left; font-family: 'JetBrains Mono', monospace; font-weight: 500;
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em;
+    color: #57584E; border-bottom: 2px solid var(--ink); padding: 10px 12px;
+    cursor: pointer; user-select: none; white-space: nowrap;
+  }
+  thead th:hover { color: var(--accent); }
+  thead th .arrow { font-size: 10px; margin-left: 4px; opacity: 0.5; }
+  tbody td { padding: 11px 12px; border-bottom: 1px solid var(--paper-dim); vertical-align: top; }
+  tbody tr:hover { background: var(--paper-dim); }
+  .app-name { font-weight: 600; }
+  .app-oneliner { color: #57584E; font-size: 12.5px; display: block; margin-top: 2px; max-width: 320px; }
+  .pill { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; display: inline-block; }
+  .pill-self_serve { background: var(--self-serve-bg); color: var(--self-serve); }
+  .pill-gated_paid, .pill-gated_partnership, .pill-gated_admin_approval { background: var(--gated-bg); color: var(--gated); }
+  .pill-unknown { background: var(--unknown-bg); color: var(--unknown); }
+  .pill-buildable_now { background: var(--self-serve-bg); color: var(--self-serve); }
+  .pill-buildable_with_workaround { background: var(--gated-bg); color: var(--gated); }
+  .pill-blocked { background: var(--blocked-bg); color: var(--blocked); }
+  .ev-link { font-size: 12px; color: var(--accent); text-decoration: none; }
+  .ev-link:hover { text-decoration: underline; }
+  .review-flag { font-size: 11px; color: var(--blocked); font-family: 'JetBrains Mono', monospace; }
+
+  /* ---- Footer / repo ---- */
+  .footer { padding: 48px 0 72px; }
+  .footer-grid { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  .repo-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    padding: 12px 20px; background: var(--ink); color: var(--paper);
+    border-radius: 3px; text-decoration: none;
+  }
+  .repo-link:hover { background: #2A323C; }
+  .footer-note { font-size: 12.5px; color: #6B6A62; max-width: 460px; }
+</style>
+</head>
+<body>
+
+<div class="wrap hero">
+  <div class="eyebrow">Composio · API Access Audit</div>
+  <h1>100 apps. One question asked of each: can an agent actually get in the door?</h1>
+  <p class="lede">
+    A research agent — not a human — checked auth methods, access gates, and API surface
+    for 100 apps across 10 categories, then a second pass caught what it got wrong.
+  </p>
+  <div class="hero-stats" id="hero-stats"></div>
+</div>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="eyebrow">Pattern 01</div>
+    <h2>Self-serve access, by category</h2>
+    <p>Green is a signup form. Amber is a sales call, an admin role, or a paid plan. Red is a dead end. Grey means the research couldn't tell.</p>
+  </div>
+  <div class="gatebars" id="gatebars"></div>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--self-serve)"></span>Self-serve</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--gated)"></span>Gated (paid / partnership / admin)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--blocked)"></span>Blocked</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--unknown)"></span>Unknown</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="eyebrow">Pipeline</div>
+    <h2>How the research got done</h2>
+    <p>Search and generation were split on purpose — a bundled search+generation call blew through free-tier token budgets in one shot.</p>
+  </div>
+  <div class="workflow">
+    <div class="wf-step">
+      <div class="wf-num">01</div>
+      <h3>Search</h3>
+      <p>Tavily API pulls the top results for each app's docs, auth, and developer access pages. Free tier, no card.</p>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-num">02</div>
+      <h3>Extract</h3>
+      <p>A plain Groq model reads the search results and returns strict JSON against a 13-field schema — no internal search loop, so no shared rate-limit wall.</p>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-num">03</div>
+      <h3>Checkpoint</h3>
+      <p>Every result writes to disk immediately. A crash or rate limit mid-run costs nothing — the script skips completed apps on resume.</p>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-num">04</div>
+      <h3>Verify</h3>
+      <p>An independent consistency pass — not the same pipeline marking its own homework — checks every record for contradictions, bad enums, and recycled evidence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="eyebrow">Composio SDK</div>
+    <h2>Cross-checking against Composio's own toolkit registry</h2>
+    <p>Pass 1 used generic search + extraction (Tavily + Groq) rather than Composio's SDK, to demonstrate a framework-agnostic agentic loop. But there's a more direct use of Composio's own tooling: their toolkit registry is the actual ground truth for "does an agent-callable integration already exist" — more authoritative than any web search, since Composio is the source of it.</p>
+  </div>
+  <div class="flag-box" style="max-width: 720px;">
+    <h3>composio_toolkit_check.py — live results</h3>
+    <div class="flag-row">
+      <span class="fname">What it does</span>
+      <span class="freason">Calls <code>composio.toolkits.list()</code> to fetch Composio's full toolkit registry, fuzzy-matches each of the 100 app names against it, and compares the result against what Pass 1's agent guessed for <code>existing_mcp</code> — flagging any disagreement.</span>
+    </div>
+    <div class="flag-row">
+      <span class="fname">Status <span class="badge" style="background:var(--self-serve-bg);color:var(--self-serve)">run live</span></span>
+      <span class="freason">Actually run against the live Composio API — 1,249 toolkits pulled from their real registry, cross-checked against all 98 valid Pass 1 records. Result: 31 disagreements (32%). Splitting those apart: 27 were Pass 1 being too conservative — Composio already has a toolkit for the app (e.g. Pipedrive, Discord, Jira, Asana, QuickBooks) but the agent's web search couldn't confirm it and marked it "unknown" or false. Only 4 were the agent overclaiming — saying an MCP existed when Composio's registry shows it doesn't (Ecwid, Vercel, NotebookLM, Otter AI).</span>
+    </div>
+    <div class="flag-row">
+      <span class="fname">Headline finding</span>
+      <span class="freason">27 of 98 apps already have a Composio toolkit that Pass 1's web search missed entirely — zero extra research needed to build agents for those, just connect and go. The research agent under-reports MCP coverage rather than fabricating it, which is the safer failure mode, but it means <code>existing_mcp</code> in the main table below should be read as a floor, not a ceiling — Composio's own registry is the better source of truth for that specific field.</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="eyebrow">Pattern 02</div>
+    <h2>Verification pass — what a second look caught</h2>
+    <p>Three separate loops: an automated consistency pass (106 flags across 100 records, mostly mechanical), an independent hand fact-check against real docs on a 10-app sample, and a Composio SDK cross-check against their own toolkit registry (see below). The hand check found real errors the automated pass missed entirely.</p>
+  </div>
+  <div class="verify-grid">
+    <ul class="verify-list" id="verify-list"></ul>
+    <div class="flag-box">
+      <h3>Live fact-check: 6 / 10 correct on hand sample</h3>
+      <div class="flag-row">
+        <span class="fname">Method</span>
+        <span class="freason">10 records (10% of the dataset) independently cross-checked against real developer docs by hand: Ramp, Attio, Devin, GitHub, WhatsApp Business, Stripe, iPayX, Mermaid CLI, Otter AI, Ahrefs.</span>
+      </div>
+      <div class="flag-row">
+        <span class="fname">Ahrefs <span class="badge">wrong</span></span>
+        <span class="freason">Record marked almost every field "unknown," including an invalid verdict value. Ahrefs actually has a full documented API v3, a free no-subscription "Public" endpoint tier, and an official hosted MCP server. The original search step simply failed to surface Ahrefs's own developer docs.</span>
+      </div>
+      <div class="flag-row">
+        <span class="fname">Otter AI <span class="badge">wrong</span></span>
+        <span class="freason">Record claimed self-serve, free public API. Otter's own help center says the public API is Enterprise-only, gated behind contacting an account manager.</span>
+      </div>
+      <div class="flag-row">
+        <span class="fname">Mermaid CLI <span class="badge">wrong</span></span>
+        <span class="freason">Record described a REST API with OAuth2 and admin approval. That's actually the API for an unrelated coral-reef data nonprofit that happens to share the name "MERMAID." The real app — the diagramming CLI tool — has no REST API at all; it's a local command-line renderer.</span>
+      </div>
+      <div class="flag-row">
+        <span class="fname">iPayX <span class="badge">wrong, excluded from stats</span></span>
+        <span class="freason">No company matching this name turned up in an independent web check. Its evidence URL was identical to the unrelated record above it — a strong sign of a recycled or fabricated result.</span>
+      </div>
+      <div class="flag-row">
+        <span class="fname">Ramp, Attio, Devin, GitHub, WhatsApp Business, Stripe <span class="badge">correct</span></span>
+        <span class="freason">All six matched real docs on access type and buildability. Devin's plan-name detail was slightly off (says "Enterprise only"; the $500/mo Team plan already includes API access) but the gated_paid verdict itself held up.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <div class="eyebrow">Full dataset</div>
+    <h2>All 100 apps</h2>
+    <p>Sort any column. Filter by category or access. Every row links to the source page the verdict was drawn from.</p>
+  </div>
+  <div class="controls">
+    <select id="filter-category"><option value="">All categories</option></select>
+    <select id="filter-access">
+      <option value="">All access types</option>
+      <option value="self_serve">Self-serve</option>
+      <option value="gated_paid">Gated — paid</option>
+      <option value="gated_partnership">Gated — partnership</option>
+      <option value="gated_admin_approval">Gated — admin approval</option>
+      <option value="unknown">Unknown</option>
+    </select>
+    <input type="text" id="search-box" placeholder="Search app name…">
+    <span class="count-note" id="count-note"></span>
+  </div>
+  <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th data-key="name">App <span class="arrow"></span></th>
+          <th data-key="category">Category <span class="arrow"></span></th>
+          <th data-key="access">Access <span class="arrow"></span></th>
+          <th data-key="buildable_verdict">Buildable <span class="arrow"></span></th>
+          <th data-key="existing_mcp">MCP exists <span class="arrow"></span></th>
+          <th data-key="confidence">Confidence <span class="arrow"></span></th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<div class="footer wrap">
+  <div class="footer-grid">
+    <div>
+      <a class="repo-link" href="#" id="repo-link">↗ View full research pipeline on GitHub</a>
+    </div>
+    <p class="footer-note">
+      Research agent + verification script built for the Composio AI Product Ops take-home.
+      100 apps researched, 106 verification flags resolved, 1 record excluded as unverifiable.
+    </p>
+  </div>
+</div>
+
+<script>
+const DATA = [{"id":1,"name":"Salesforce","category":"CRM and Sales","one_liner":"A cloud\u2011based CRM platform that provides REST, SOAP, Bulk, Streaming, and GraphQL APIs for programmatic access to Salesforce data and metadata.","auth_methods":["OAuth2","Token"],"access":"self_serve","access_note":"Free developer org signup gives immediate API access; production apps use Connected Apps with OAuth2 and may require security review.","api_surface":"broad REST, 200+ endpoints (plus SOAP, Bulk, Streaming, GraphQL)","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm","confidence":"high","needs_manual_review":false},{"id":2,"name":"HubSpot","category":"CRM and Sales","one_liner":"HubSpot is a CRM and sales platform that provides APIs for developers to build integrations and access its data","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"developers can create a private app to obtain an API key or use OAuth for authentication","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview","confidence":"high","needs_manual_review":false},{"id":3,"name":"Pipedrive","category":"CRM and Sales","one_liner":"Pipedrive is a sales CRM that provides RESTful API for integration and automation","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"free developer sandbox available","api_surface":"broad REST, with 2 versions (v1 and v2)","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://pipedrive.readme.io/docs/core-api-concepts-authentication","confidence":"high","needs_manual_review":false},{"id":4,"name":"Attio","category":"CRM and Sales","one_liner":"Attio is a data-driven CRM platform that enables teams to integrate and automate their workflows with its REST API, App SDK, and MCP server.","auth_methods":["OAuth2","API key"],"access":"gated_partnership","access_note":"requires manual request for developer access, typically takes a couple of days","api_surface":"broad REST, with webhooks and App SDK","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.attio.com/rest-api/guides/authentication","confidence":"high","needs_manual_review":false},{"id":5,"name":"Twenty","category":"CRM and Sales","one_liner":"Twenty is an open-source CRM that provides REST and GraphQL APIs generated from a workspace schema, allowing for customization and integration with other applications.","auth_methods":["API key"],"access":"self_serve","access_note":"API keys can be generated in the app's API settings","api_surface":"broad REST and GraphQL, with CRUD on records and custom objects","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.twenty.com/developers/extend/api","confidence":"high","needs_manual_review":false},{"id":6,"name":"Podio","category":"CRM and Sales","one_liner":"Podio is a platform that allows integration with other services and building of tools and applications on top of it through its API.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"API key can be obtained from account settings page","api_surface":"broad REST","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.podio.com","confidence":"high","needs_manual_review":false},{"id":7,"name":"Zoho CRM","category":"CRM and Sales","one_liner":"Zoho CRM is a customer relationship management platform that provides APIs for accessing and managing its features.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"free developer account and API keys","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.zoho.com/crm/developer/docs/api/v8/oauth-overview.html","confidence":"high","needs_manual_review":false},{"id":8,"name":"Close","category":"CRM and Sales","one_liner":"Close is a CRM and sales platform that provides a REST API for integration and automation","auth_methods":["OAuth2","API key","Basic"],"access":"self_serve","access_note":"API keys and OAuth apps can be created in the Close account settings","api_surface":"broad REST, 50+ endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.close.com/api/overview","confidence":"high","needs_manual_review":false},{"id":9,"name":"Copper","category":"CRM and Sales","one_liner":"Copper is a CRM and sales platform that provides an API for developers to integrate with its services.","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"developers can register their application and obtain API keys or use OAuth2.0","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.copper.com/introduction/oauth/index.html","confidence":"high","needs_manual_review":false},{"id":10,"name":"DealCloud","category":"CRM and Sales","one_liner":"DealCloud provides a comprehensive API for sales and CRM management, enabling developers to access and manipulate data programmatically.","auth_methods":["API key","Client ID","Client secret"],"access":"gated_admin_approval","access_note":"requires system admin role such as Platform Manager","api_surface":"broad REST, Swagger/OpenAPI support","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"requires specific admin role and API key setup","evidence_url":"https://api.docs.dealcloud.com/sdk/python/authentication","confidence":"medium","needs_manual_review":false},{"id":11,"name":"Zendesk","category":"Support and Helpdesk","one_liner":"Zendesk is a customer service and support platform that provides a range of tools for managing customer interactions and resolving issues.","auth_methods":["API key","OAuth2","Token"],"access":"self_serve","access_note":"API tokens and OAuth access tokens can be created by users with valid accounts","api_surface":"broad REST, 100+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.zendesk.com/documentation/api-basics/authentication/using-the-api-with-2-factor-authentication-enabled","confidence":"high","needs_manual_review":false},{"id":12,"name":"Intercom","category":"Support and Helpdesk","one_liner":"Intercom is a customer messaging platform that allows developers to build integrations and automate actions using its API","auth_methods":["Token","OAuth2"],"access":"self_serve","access_note":"free developer account and access token provided after app creation","api_surface":"broad REST","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.intercom.com/docs/build-an-integration/learn-more/authentication","confidence":"high","needs_manual_review":false},{"id":13,"name":"Freshdesk","category":"Support and Helpdesk","one_liner":"Freshdesk is a help desk software that provides a range of APIs for accessing and managing support tickets and other data.","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"API keys can be generated from the Freshdesk account settings","api_surface":"broad REST, 20+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.freshworks.com/docs/app-sdk/v3.0/support_ticket/rest-apis","confidence":"high","needs_manual_review":false},{"id":14,"name":"Front","category":"Support and Helpdesk","one_liner":"Front is a platform that allows developers to build custom integrations and access core data and actions within the app through its API","auth_methods":["Bearer token","OAuth2"],"access":"self_serve","access_note":"free developer environment with limited access to 3 teammates","api_surface":"broad REST","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://dev.frontapp.com/docs/welcome","confidence":"high","needs_manual_review":false},{"id":15,"name":"Pylon","category":"Support and Helpdesk","one_liner":"Pylon provides programmatic access to read and write data within the platform, allowing for automation of business processes and integration with other applications.","auth_methods":["Token"],"access":"gated_admin_approval","access_note":"requires Admin user to create API token","api_surface":"broad REST, with various endpoints for accounts, activities, attachments, and more","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.usepylon.com/pylon-docs/developer/api","confidence":"high","needs_manual_review":false},{"id":16,"name":"LiveAgent","category":"Support and Helpdesk","one_liner":"LiveAgent provides a support and helpdesk platform with API access to conversations, teams, and agents.","auth_methods":["API key","Token"],"access":"self_serve","access_note":"API key can be generated by admin in Configuration > System > API","api_surface":"broad REST, with API v1 and API v3 endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://support.liveagent.com/840770-Complete-API-reference","confidence":"high","needs_manual_review":false},{"id":17,"name":"Plain","category":"Support and Helpdesk","one_liner":"Plain provides Identity and Access Management (IAM) solutions with various APIs for integration","auth_methods":["API key","Token"],"access":"self_serve","access_note":"free documentation and API access","api_surface":"broad REST and GraphQL, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.plain.com/docs/graphql/introduction","confidence":"high","needs_manual_review":false},{"id":18,"name":"Help Scout","category":"Support and Helpdesk","one_liner":"Help Scout provides a platform for support and helpdesk operations with APIs for custom integrations and automation","auth_methods":["API key","OAuth2"],"access":"self_serve","access_note":"API keys can be generated from user profile, OAuth2 application creation is also available","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.helpscout.com/docs-api","confidence":"high","needs_manual_review":false},{"id":19,"name":"Gorgias","category":"Support and Helpdesk","one_liner":"Gorgias provides a REST API for reading and writing data in a helpdesk programmatically.","auth_methods":["Basic","OAuth2"],"access":"self_serve","access_note":"API keys are tied to individual accounts and can be managed in the Gorgias settings","api_surface":"broad REST, various endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.gorgias.com/en-US/rest-api-208286","confidence":"high","needs_manual_review":false},{"id":20,"name":"Gladly","category":"Support and Helpdesk","one_liner":"Gladly is a customer service platform that provides APIs to facilitate seamless customer experiences and integrations with external systems.","auth_methods":["Token"],"access":"self_serve","access_note":"API tokens can be generated within the Gladly UI by users with the 'API User' role","api_surface":"broad REST, with Lookup API and webhooks","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.gladly.com/rest","confidence":"high","needs_manual_review":false},{"id":21,"name":"Slack","category":"Communications and Messaging","one_liner":"Slack is a platform that allows developers to build interactive apps, automate workflows, and integrate with the Slack workspace.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"free dev sandbox","api_surface":"broad REST, with OAuth 2.0 flow and various tokens","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.slack.dev/authentication","confidence":"high","needs_manual_review":false},{"id":22,"name":"Twilio","category":"Communications and Messaging","one_liner":"Twilio provides a range of APIs for communications and messaging, including voice, video, and text messaging, as well as user verification and authentication","auth_methods":["Basic","API key"],"access":"self_serve","access_note":"free dev sandbox and paid plans available","api_surface":"broad REST, multiple endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.twilio.com/docs","confidence":"high","needs_manual_review":false},{"id":23,"name":"Zoho Cliq","category":"Communications and Messaging","one_liner":"Zoho Cliq is a platform for building internal tools to automate everyday work activities and integrate with other applications","auth_methods":["OAuth2"],"access":"self_serve","access_note":"developer documentation and API access available","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.zoho.com/cliq/help/restapi/v3/introduction","confidence":"high","needs_manual_review":false},{"id":24,"name":"Lark (Larksuite)","category":"Communications and Messaging","one_liner":"Lark is an all-in-one productivity solution that includes chat, scheduling, docs, video conferencing, auto-translation and more in a single platform","auth_methods":["Unknown"],"access":"unknown","access_note":"unknown","api_surface":"unknown","existing_mcp":false,"buildable_verdict":"blocked","main_blocker":"lack of publicly available API documentation","evidence_url":"https://open.larksuite.com","confidence":"low","needs_manual_review":false},{"id":25,"name":"Pumble","category":"Communications and Messaging","one_liner":"Pumble is a messaging and communication platform that allows users to interact with its API for automation and workflow integrations.","auth_methods":["API key","Token"],"access":"self_serve","access_note":"API keys can be obtained for integration","api_surface":"REST, with multiple endpoints and layers of authentication","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://mindcloud.co/docs/universal/rest/pumble/latest/introduction/authentication","confidence":"high","needs_manual_review":false},{"id":26,"name":"Discord","category":"Communications and Messaging","one_liner":"Discord is a communication platform that enables developers to build applications that utilize authentication and data from the Discord API.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"Registration required for developer application and OAuth2 credentials","api_surface":"broad REST, with OAuth2 support","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.discord.com/developers/topics/oauth2","confidence":"high","needs_manual_review":false},{"id":27,"name":"Telegram","category":"Communications and Messaging","one_liner":"Telegram offers a free and open platform for app and website developers to let users sign up and log in with their Telegram accounts, and also provides APIs for further integration and customization","auth_methods":["Bot Token"],"access":"self_serve","access_note":"free and open platform, but API Terms of Service apply","api_surface":"broad REST, with multiple APIs including Bot API, Telegram API, TDLib, and Gateway API","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://core.telegram.org/api/obtaining_api_id","confidence":"high","needs_manual_review":false},{"id":28,"name":"WhatsApp Business","category":"Communications and Messaging","one_liner":"WhatsApp Business provides a platform for developers to integrate WhatsApp messaging into their applications and systems","auth_methods":["OAuth2","Token"],"access":"gated_partnership","access_note":"requires Meta developer account, business portfolio, and configured business app","api_surface":"broad REST, multiple endpoints","existing_mcp":true,"buildable_verdict":"buildable_with_workaround","main_blocker":"requires Meta business portfolio and app configuration","evidence_url":"https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started","confidence":"high","needs_manual_review":false},{"id":29,"name":"Aircall","category":"Communications and Messaging","one_liner":"Aircall provides a public API and webhooks to connect its business phone system with internal systems, CRM, databases, or external tools.","auth_methods":["OAuth2","Basic"],"access":"self_serve","access_note":"public API with documentation and tutorials available","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.aircall.io/api-references","confidence":"high","needs_manual_review":false},{"id":30,"name":"Vonage","category":"Communications and Messaging","one_liner":"Vonage provides APIs for communications and messaging, including Verify API for phone number authentication and Video API for live streaming and video conferencing.","auth_methods":["Basic","JWT","OAuth2"],"access":"gated_paid","access_note":"requires sales contact or paid account","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_with_workaround","main_blocker":"authentication and authorization requirements","evidence_url":"https://developer.vonage.com/en/verify/concepts/authentication","confidence":"medium","needs_manual_review":false},{"id":31,"name":"Google Ads","category":"Marketing, Ads, Email and Social","one_liner":"Google Ads API allows developers to manage Google Ads accounts and create ads to reach goals across all of Google's channels","auth_methods":["OAuth2"],"access":"self_serve","access_note":"requires Google Cloud project with enabled Google Ads API and OAuth2 credentials","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.google.com/google-ads/api/docs/oauth/overview","confidence":"high","needs_manual_review":false},{"id":32,"name":"Meta Ads","category":"Marketing, Ads, Email and Social","one_liner":"The Meta Ads API allows users to automate ad creation, management, and reporting across Facebook, Instagram, Messenger, and WhatsApp.","auth_methods":["Token"],"access":"gated_paid","access_note":"requires a Meta Business Manager account with admin access and an active ad account linked to the Business Manager","api_surface":"broad Graph API, 700+ metrics","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.facebook.com/documentation/ads-commerce/marketing-api/get-started/authentication","confidence":"high","needs_manual_review":false},{"id":33,"name":"LinkedIn Ads","category":"Marketing, Ads, Email and Social","one_liner":"LinkedIn Ads is a platform for creating and managing advertisements on LinkedIn, accessible through the LinkedIn API","auth_methods":["OAuth2"],"access":"gated_admin_approval","access_note":"most permissions require explicit approval from LinkedIn, but Open Permissions are available to all developers without special approval","api_surface":"broad REST, with multiple endpoints for advertising and user management","existing_mcp":false,"buildable_verdict":"buildable_with_workaround","main_blocker":"explicit approval from LinkedIn required for most permissions","evidence_url":"https://learn.microsoft.com/en-us/linkedin/shared/authentication/getting-access","confidence":"high","needs_manual_review":false},{"id":34,"name":"GoHighLevel","category":"Marketing, Ads, Email and Social","one_liner":"GoHighLevel provides a platform for developers to build and integrate applications and tools using its API, enabling access to its features and data","auth_methods":["OAuth2","Token"],"access":"self_serve","access_note":"Developer's Marketplace with OAuth and Private Integrations options","api_surface":"broad REST API","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://marketplace.gohighlevel.com/docs/Authorization/DeveloperGlossary","confidence":"high","needs_manual_review":false},{"id":35,"name":"Mailchimp","category":"Marketing, Ads, Email and Social","one_liner":"Mailchimp provides programmatic access to its data and functionality through its Marketing API, allowing developers to build custom features to manage audiences, campaigns, and more.","auth_methods":["OAuth2","API key","Basic"],"access":"self_serve","access_note":"free API key available after creating a Mailchimp account","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://mailchimp.com/developer/marketing/guides/quick-start","confidence":"high","needs_manual_review":false},{"id":36,"name":"Klaviyo","category":"Marketing, Ads, Email and Social","one_liner":"Klaviyo provides APIs for marketing, ads, email, and social media integration, allowing developers to access and manage data, track events, and implement features such as back in stock notifications.","auth_methods":["API key","OAuth2"],"access":"self_serve","access_note":"developers can create an account and obtain API credentials","api_surface":"broad REST, with multiple endpoints for different features","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.klaviyo.com/en/reference/api_overview","confidence":"high","needs_manual_review":false},{"id":37,"name":"systeme.io","category":"Marketing, Ads, Email and Social","one_liner":"Systeme.io is a funnel builder that exposes a public API for developers to interact with its platform","auth_methods":["API key"],"access":"self_serve","access_note":"public API key available in account settings","api_surface":"REST, with a set of endpoints (e.g. v2)","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://help.systeme.io/article/2329-how-to-use-systeme-io-public-api","confidence":"high","needs_manual_review":false},{"id":38,"name":"Pinterest","category":"Marketing, Ads, Email and Social","one_liner":"Pinterest API allows developers to manage content, ads, targeting, shopping, and analytics on the platform","auth_methods":["OAuth2"],"access":"gated_paid","access_note":"requires business account and app setup","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"requirement for OAuth access token and app setup","evidence_url":"https://developers.pinterest.com/docs/api/v5","confidence":"high","needs_manual_review":false},{"id":39,"name":"Threads","category":"Marketing, Ads, Email and Social","one_liner":"Threads is a social network where users can share ideas, ask questions, and join conversations, built to help users discover new voices and join communities they care about.","auth_methods":["Unknown"],"access":"unknown","access_note":"requires an Instagram account","api_surface":"unknown","existing_mcp":false,"buildable_verdict":"blocked","main_blocker":"lack of API documentation","evidence_url":"https://developers.facebook.com/docs/threads","confidence":"low","needs_manual_review":false},{"id":40,"name":"SendGrid","category":"Marketing, Ads, Email and Social","one_liner":"SendGrid is an email service that allows users to send and manage emails through its API or web interface.","auth_methods":["API key"],"access":"self_serve","access_note":"API keys can be created and managed through the SendGrid dashboard","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.twilio.com/docs/sendgrid/for-developers/sending-email/api-getting-started","confidence":"high","needs_manual_review":false},{"id":41,"name":"Shopify","category":"Ecommerce","one_liner":"Shopify provides APIs for creating ecommerce applications and integrating with online stores","auth_methods":["OAuth2","Token"],"access":"self_serve","access_note":"free dev dashboard and CLI for app creation and authentication","api_surface":"broad REST and GraphQL, multiple endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://shopify.dev/docs/api/usage/authentication","confidence":"high","needs_manual_review":false},{"id":42,"name":"WooCommerce","category":"Ecommerce","one_liner":"WooCommerce allows users to create, read, update, and delete data using the WordPress REST API","auth_methods":["API key"],"access":"self_serve","access_note":"API keys can be generated in the WooCommerce settings","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.woocommerce.com/docs/apis/rest-api/authentication","confidence":"high","needs_manual_review":false},{"id":43,"name":"BigCommerce","category":"Ecommerce","one_liner":"BigCommerce provides APIs to manage store data, authenticate customers, and build headless ecommerce solutions.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"developers can create API accounts and obtain access tokens through the BigCommerce dashboard","api_surface":"broad REST and GraphQL, with multiple APIs for store data, customer login, and storefront management","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.bigcommerce.com/developer/docs/overview/api-fundamentals/api-accounts","confidence":"high","needs_manual_review":false},{"id":44,"name":"Salesforce Commerce Cloud","category":"Ecommerce","one_liner":"Salesforce Commerce Cloud is an ecommerce platform that provides APIs for custom development and integration.","auth_methods":["OAuth2"],"access":"gated_admin_approval","access_note":"requires administrator access to create API clients","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"complexity of authentication and authorization setup","evidence_url":"https://developer.salesforce.com/docs/commerce/commerce-api/guide/custom-api-authentication.html","confidence":"medium","needs_manual_review":false},{"id":45,"name":"Magento (Adobe Commerce)","category":"Ecommerce","one_liner":"Adobe Commerce provides REST and GraphQL APIs to access products, categories, customers, carts, orders, inventory, and configuration.","auth_methods":["OAuth2","Token"],"access":"self_serve","access_note":"create a web services user on Admin","api_surface":"broad REST and GraphQL APIs, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.adobe.com/commerce/webapi/rest/","confidence":"high","needs_manual_review":false},{"id":46,"name":"Squarespace","category":"Ecommerce","one_liner":"Squarespace is an ecommerce platform that provides APIs for third-party integrations and custom development","auth_methods":["OAuth2","API key"],"access":"gated_paid","access_note":"requires Developer API / Orders API to be explicitly included in the plan","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":null,"evidence_url":"https://developers.squarespace.com/commerce-apis/oauth","confidence":"high","needs_manual_review":false},{"id":47,"name":"Ecwid","category":"Ecommerce","one_liner":"Ecwid REST API allows access and management of store data, payment and shipping methods, and storefront settings.","auth_methods":["OAuth2","Token"],"access":"self_serve","access_note":"free dev access with a store and custom app","api_surface":"broad REST, with rate limits","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.ecwid.com/api-reference","confidence":"high","needs_manual_review":false},{"id":48,"name":"Gumroad","category":"Ecommerce","one_liner":"Gumroad allows creators to sell digital products and provides an API for integrating with the platform","auth_methods":["Token","OAuth2"],"access":"self_serve","access_note":"create an application to generate an access token","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.n8n.io/integrations/builtin/credentials/gumroad","confidence":"high","needs_manual_review":false},{"id":49,"name":"Amazon Selling Partner","category":"Ecommerce","one_liner":"The Amazon Selling Partner API is a REST-based API that helps Amazon sellers and vendors programmatically access their data for orders, shipments, payments, and more.","auth_methods":["OAuth2","Other"],"access":"gated_partnership","access_note":"Requires approval from a selling partner","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"Complex authorization process with multiple token exchanges","evidence_url":"https://developer-docs.amazon/sp-api/docs/connecting-to-the-selling-partner-api","confidence":"high","needs_manual_review":false},{"id":50,"name":"fanbasis","category":"Ecommerce","one_liner":"FanBasis is a payment infrastructure platform that handles payment processing, compliance, and card network relationships for businesses","auth_methods":["API key"],"access":"self_serve","access_note":"API documentation available, with login requirement","api_surface":"REST API, with SDKs in Node, Python, PHP, and Ruby","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"requirement to sign in to access API Docs","evidence_url":"https://dev-docs.fanbasis.com","confidence":"medium","needs_manual_review":false},{"id":51,"name":"DataForSEO","category":"Data, SEO and Scraping","one_liner":"DataForSEO provides comprehensive SEO and digital marketing data solutions via API.","auth_methods":["Basic"],"access":"self_serve","access_note":"free unlimited trial","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.dataforseo.com/v3/auth","confidence":"high","needs_manual_review":false},{"id":52,"name":"SE Ranking","category":"Data, SEO and Scraping","one_liner":"SE Ranking provides APIs for pulling large volumes of raw SEO and marketing data, including keywords, backlinks, domain data, and more.","auth_methods":["API key"],"access":"gated_paid","access_note":"Requires an active SE Ranking account with API access and an API key","api_surface":"broad REST, multiple endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://seranking.com/api/how-to-get-api","confidence":"high","needs_manual_review":false},{"id":53,"name":"Ahrefs","category":"Data, SEO and Scraping","one_liner":"Ahrefs is an AI marketing platform powered by big data that helps marketers run search engine optimization, AI search, pay-per-click, content marketing, and more.","auth_methods":["Unknown"],"access":"unknown","access_note":"unknown","api_surface":"unknown","existing_mcp":"unknown","buildable_verdict":"blocked","main_blocker":null,"evidence_url":"https://ahrefs.com","confidence":"low","needs_manual_review":true},{"id":54,"name":"MrScraper","category":"Data, SEO and Scraping","one_liner":"MrScraper lets you run scrapers through an API endpoint for automation and integration purposes.","auth_methods":["API key"],"access":"unknown","access_note":"null","api_surface":"REST, with at least one endpoint for running scrapers","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":"null","evidence_url":"https://docs.mrscraper.com/docs/api/authentication","confidence":"high","needs_manual_review":false},{"id":55,"name":"Apify","category":"Data, SEO and Scraping","one_liner":"Apify provides a platform for data extraction, scraping, and automation through its REST API and client libraries.","auth_methods":["Token"],"access":"self_serve","access_note":"API token can be found on the Integrations page in the Apify Console","api_surface":"broad REST, 50+ endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.apify.com/api/v2","confidence":"high","needs_manual_review":false},{"id":56,"name":"Firecrawl","category":"Data, SEO and Scraping","one_liner":"Firecrawl gives programmatic access to web data, allowing users to extract content from webpages, crawl websites, and search the web in various formats.","auth_methods":["API key","Token"],"access":"self_serve","access_note":"free API key available in the Firecrawl dashboard, also offers keyless access","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.firecrawl.dev/api-reference/v2-introduction","confidence":"high","needs_manual_review":false},{"id":57,"name":"Bright Data","category":"Data, SEO and Scraping","one_liner":"Bright Data provides a developer toolkit for large-scale web search, crawling, and scraping, enabling reliable extraction of pages and structured data without getting blocked.","auth_methods":["API key","Basic"],"access":"self_serve","access_note":"5,000 free credits per month","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.brightdata.com/api-reference/authentication","confidence":"high","needs_manual_review":false},{"id":58,"name":"Sherlock","category":"Data, SEO and Scraping","one_liner":"Sherlock allows users to search for the presence of specific usernames across over 400 websites and social networks.","auth_methods":["API key"],"access":"unknown","access_note":null,"api_surface":"unknown","existing_mcp":false,"buildable_verdict":"buildable_with_workaround","main_blocker":"no clear documentation on API usage and authentication","evidence_url":"https://github.com/bellingcat/toolkit/blob/main/gitbook/tools/sherlock/README.md","confidence":"medium","needs_manual_review":false},{"id":59,"name":"Waterfall.io","category":"Data, SEO and Scraping","one_liner":"Waterfall.io provides an API for finding and enriching contacts, prospecting by title and company, verifying emails, and more.","auth_methods":["API key"],"access":"self_serve","access_note":"API keys can be created","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.waterfall.io/v1/authentication","confidence":"high","needs_manual_review":false},{"id":60,"name":"Clay","category":"Data, SEO and Scraping","one_liner":"Clay is a data enrichment and sales intelligence platform that allows users to connect apps and custom code to create automated workflows and build tools for their team.","auth_methods":["API key","Token","Other"],"access":"unknown","access_note":"unknown","api_surface":"broad REST, with support for HTTP API enrichment and multiple authentication patterns","existing_mcp":"unknown","buildable_verdict":"buildable_with_workaround","main_blocker":"proper authentication setup required","evidence_url":"https://university.clay.com/docs/http-api-integration-overview","confidence":"medium","needs_manual_review":false},{"id":61,"name":"GitHub","category":"Developer, Infra and Data platforms","one_liner":"GitHub provides a REST API for developers to access and manage their repositories and resources.","auth_methods":["Token","OAuth2"],"access":"self_serve","access_note":"free access to REST API with token-based authentication","api_surface":"broad REST, with OpenAPI compliant documentation","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.github.com/en/rest","confidence":"high","needs_manual_review":false},{"id":62,"name":"Vercel","category":"Developer, Infra and Data platforms","one_liner":"Vercel provides a comprehensive toolkit for developers to integrate with its API for efficient project and deployment management.","auth_methods":["API key","Token"],"access":"self_serve","access_note":"API access tokens can be created and managed inside account settings","api_surface":"broad REST, 50+ endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://vercel.com/docs/rest-api","confidence":"high","needs_manual_review":false},{"id":63,"name":"Netlify","category":"Developer, Infra and Data platforms","one_liner":"A hosting service for the programmable web, offering a REST-style API for handling website deployments, form submissions, and more.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"available as a beta release on Netlify Labs","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://open-api.netlify.com","confidence":"high","needs_manual_review":false},{"id":64,"name":"Cloudflare","category":"Developer, Infra and Data platforms","one_liner":"Cloudflare provides infrastructure and security services for a secure and fast internet.","auth_methods":["API key","Token"],"access":"gated_paid","access_note":"requires purchase of R2 storage for token generation","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.cloudflare.com/analytics/graphql-api/getting-started/authentication/api-key-auth","confidence":"high","needs_manual_review":false},{"id":65,"name":"Supabase","category":"Developer, Infra and Data platforms","one_liner":"authenticate and authorize users","auth_methods":["OAuth2","password","magic link","one-time password (OTP)","social login","SAML (single sign-on)"],"access":"self_serve","access_note":"free, open-source","api_surface":"broad REST","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://supabase.com/docs/guides/auth","confidence":"high","needs_manual_review":false},{"id":66,"name":"Neo4j","category":"Developer, Infra and Data platforms","one_liner":"A graph database platform for storing and querying complex relationships between data","auth_methods":["OAuth2","API key","Basic","Token"],"access":"gated_paid","access_note":"requires enterprise edition","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://neo4j.com/docs/http-api/current/authentication-authorization","confidence":"high","needs_manual_review":false},{"id":67,"name":"Snowflake","category":"Developer, Infra and Data platforms","one_liner":"A cloud-based data platform for storing and analyzing data","auth_methods":["API key","OAuth2"],"access":"self_serve","access_note":null,"api_surface":"broad REST, 50+ endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/authentication","confidence":"high","needs_manual_review":false},{"id":68,"name":"MongoDB Atlas","category":"Developer, Infra and Data platforms","one_liner":"A platform for managing MongoDB clusters and components.","auth_methods":["OAuth2"],"access":"gated_partnership","access_note":"requires Organization Owner access","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.mongodb.com/docs/atlas/api/api-authentication","confidence":"high","needs_manual_review":false},{"id":69,"name":"Datadog","category":"Developer, Infra and Data platforms","one_liner":"Provides monitoring and analytics capabilities for developers and organizations.","auth_methods":["Token","API key"],"access":"gated_paid","access_note":"free dev sandbox","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.datadoghq.com/account_management/api-app-keys","confidence":"high","needs_manual_review":false},{"id":70,"name":"Sentry","category":"Developer, Infra and Data platforms","one_liner":"A platform for monitoring, error tracking, and performance measurement of applications.","auth_methods":["Token"],"access":"self_serve","access_note":"users are supposed to get their own API keys/tokens","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.sentry.io/api/auth","confidence":"high","needs_manual_review":false},{"id":71,"name":"Notion","category":"Productivity and Project Management","one_liner":"A note-taking and project management app with a wide range of features.","auth_methods":["OAuth2"],"access":"self_serve","access_note":null,"api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.notion.com/reference/authentication","confidence":"medium","needs_manual_review":false},{"id":72,"name":"Airtable","category":"Productivity and Project Management","one_liner":"Cloud collaboration and database software with a focus on productivity and project management","auth_methods":["OAuth2","API key","Unknown"],"access":"self_serve","access_note":"free limited plan available","api_surface":"broad REST, many endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://www.airtable.com/developers/web/api/authentication","confidence":"high","needs_manual_review":false},{"id":73,"name":"Linear","category":"Productivity and Project Management","one_liner":"A project management and productivity app","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"free with OAuth2 application creation, or personal API keys","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://linear.app/developers/oauth-2-0-authentication","confidence":"high","needs_manual_review":false},{"id":74,"name":"Jira","category":"Productivity and Project Management","one_liner":"Project management tool for teams to plan, track, and release software","auth_methods":["Basic"],"access":"self_serve","access_note":null,"api_surface":"broad REST, 3+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.atlassian.com/cloud/jira/software/basic-auth-for-rest-apis","confidence":"high","needs_manual_review":false},{"id":75,"name":"Asana","category":"Productivity and Project Management","one_liner":"A project management and collaboration platform for teams.","auth_methods":["API key","OAuth2","Token"],"access":"self_serve","access_note":"free","api_surface":"REST, multiple endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.asana.com/docs/authentication","confidence":"high","needs_manual_review":false},{"id":76,"name":"Monday.com","category":"Productivity and Project Management","one_liner":"A cloud-based work operating system for managing work processes","auth_methods":["Token","Seamless Authentication using Monday SDK"],"access":"self_serve","access_note":null,"api_surface":"REST, numerous endpoints as detailed in the developer docs","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.monday.com/api-reference/docs/authentication","confidence":"high","needs_manual_review":false},{"id":77,"name":"ClickUp","category":"Productivity and Project Management","one_liner":"Use the ClickUp API to build powerful integrations and apps for project management and productivity.","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":null,"api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.clickup.com/docs/authentication","confidence":"high","needs_manual_review":false},{"id":78,"name":"Coda","category":"Productivity and Project Management","one_liner":"Allows programmatically interacting with Coda docs via API.","auth_methods":["OAuth2","API key","Other"],"access":"self_serve","access_note":null,"api_surface":"broad REST","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://coda.io/developers","confidence":"high","needs_manual_review":false},{"id":79,"name":"Smartsheet","category":"Productivity and Project Management","one_liner":"Provides programmatic access to Smartsheet's core features for managing sheets, rows, columns, and cells; controlling workspaces and folders; handling attachments and comments; and administering users, groups, and workflows.","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":"free","api_surface":"narrow REST, 1+ endpoints (estimated based on documentation)","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication","confidence":"high","needs_manual_review":false},{"id":80,"name":"Harvest","category":"Productivity and Project Management","one_liner":"A tool for project management and expense tracking.","auth_methods":["OAuth2"],"access":"gated_partnership","access_note":"free dev sandbox","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://help.getharvest.com/api-v2/authentication-api/authentication/authentication","confidence":"high","needs_manual_review":false},{"id":81,"name":"Stripe","category":"Finance and Fintech","one_liner":"Stripe is a payment processing platform that allows users to accept payments online or offline.","auth_methods":["API key","Unknown"],"access":"self_serve","access_note":"no gate","api_surface":"broad REST, 50+ endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.stripe.com/api/authentication","confidence":"high","needs_manual_review":false},{"id":82,"name":"Plaid","category":"Finance and Fintech","one_liner":"Access and authenticate user banking information for bank account verification, payment initiation, and personal finance management","auth_methods":["Database Auth"],"access":"self_serve","access_note":"developer portal with free resources","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://plaid.com/docs/api/products/auth","confidence":"high","needs_manual_review":false},{"id":83,"name":"Binance","category":"Finance and Fintech","one_liner":"Official Binance API documentation for various financial products and services.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"create API key on API Management page","api_surface":"broad REST, various endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.binance.com/en/docs","confidence":"high","needs_manual_review":false},{"id":84,"name":"Paygent Connect","category":"Finance and Fintech","one_liner":"API for NMI-powered payment processing","auth_methods":["API key","OAuth2"],"access":"self_serve","access_note":"","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.payaconnect.com/developers/api/endpoints/authentication","confidence":"high","needs_manual_review":false},{"id":85,"name":"iPayX","category":"Finance and Fintech","one_liner":"Not found in search results","auth_methods":["API key"],"access":"self_serve","access_note":"free dev sandbox","api_surface":"unknown","existing_mcp":false,"buildable_verdict":"blocked","main_blocker":null,"evidence_url":"https://docs.payaconnect.com/developers/api/endpoints/authentication","confidence":"low","needs_manual_review":true},{"id":86,"name":"QuickBooks","category":"Finance and Fintech","one_liner":"provides programmatic access to accounting features for small and mid-sized businesses","auth_methods":["OAuth2"],"access":"gated_admin_approval","access_note":"free dev sandbox likely, requires developer account","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://zuplo.com/blog/2025/05/20/quickbooks-api","confidence":"high","needs_manual_review":false},{"id":87,"name":"Xero","category":"Finance and Fintech","one_liner":"Xero's API offers a client credentials grant-type for apps to manage their own app-data via non-tenanted endpoints.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"free public API","api_surface":"REST (non-tenanted endpoints)","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.xero.com/documentation/guides/oauth2/client-credentials","confidence":"high","needs_manual_review":false},{"id":88,"name":"Brex","category":"Finance and Fintech","one_liner":"Integrate with Brex's banking services using their public APIs.","auth_methods":["API key","OAuth2"],"access":"self_serve","access_note":"free public APIs and no information on restrictions","api_surface":"broad REST, at least one documented endpoint","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developer.brex.com/guides/authentication","confidence":"high","needs_manual_review":false},{"id":89,"name":"Ramp","category":"Finance and Fintech","one_liner":"Provides financial and fintech services through an AI-assisted developer API.","auth_methods":["Basic"],"access":"gated_admin_approval","access_note":"requires sales contact, possibly via developer app inside the Ramp app","api_surface":"narrow REST, < 10 endpoints","existing_mcp":false,"buildable_verdict":"blocked","main_blocker":"need sales contact for access","evidence_url":"https://docs.ramp.com/developer-api/v1/authorization","confidence":"low","needs_manual_review":false},{"id":90,"name":"PitchBook","category":"Finance and Fintech","one_liner":"Provides real-time access to company data through its API","auth_methods":["Token"],"access":"gated_paid","access_note":"API key required","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://documenter.getpostman.com/view/5190535/TzCV1iRc","confidence":"high","needs_manual_review":false},{"id":91,"name":"NotebookLM","category":"AI, Research and Media-native","one_liner":"NotebookLM is a tool for generating insights using Google's enterprise API.","auth_methods":["Other"],"access":"gated_partnership","access_note":"free dev sandbox (https://cloud.google.com/gemini/enterprise)","api_surface":"broad REST, 50+ endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks","confidence":"medium","needs_manual_review":false},{"id":92,"name":"Otter AI","category":"AI, Research and Media-native","one_liner":"Sales Automatic follow-ups, notes capture, and CRM sync","auth_methods":["Basic","Token"],"access":"self_serve","access_note":"free public API (version v1)","api_surface":"broad REST, >=3 endpoints","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://otter.ai","confidence":"high","needs_manual_review":false},{"id":93,"name":"Fathom","category":"AI, Research and Media-native","one_liner":"Description of the API is not provided, however it involves authenticating all REST API resources with API keys","auth_methods":["API key"],"access":"self_serve","access_note":"free, with rate limiting","api_surface":"broad REST, multiple endpoints","existing_mcp":"unknown","buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://developers.fathom.ai/api-overview","confidence":"low","needs_manual_review":false},{"id":94,"name":"Consensus","category":"AI, Research and Media-native","one_liner":"Embeds AI-powered research search (Consensus) into internal tools, workflows, or apps.","auth_methods":["OAuth2"],"access":"self_serve","access_note":"","api_surface":"broad REST, API documentation available","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://consensus.app/home/api","confidence":"high","needs_manual_review":false},{"id":95,"name":"Reducto","category":"AI, Research and Media-native","one_liner":"A document parsing AI that provides APIs for developers","auth_methods":["API key"],"access":"self_serve","access_note":"free dev sandbox","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.reducto.ai/studio-account","confidence":"high","needs_manual_review":false},{"id":96,"name":"Devin","category":"AI, Research and Media-native","one_liner":"The Devin API enables enterprise customers to programmatically access detailed usage analytics and manage usage configurations for their teams.","auth_methods":["Principal + token"],"access":"gated_paid","access_note":"Enterprise plans only","api_surface":"narrow REST, 1+ endpoint","existing_mcp":true,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://docs.devin.ai/desktop/accounts/api-reference/api-introduction","confidence":"high","needs_manual_review":false},{"id":97,"name":"higgsfield","category":"AI, Research and Media-native","one_liner":"unifies access to tools for creating images, videos, voices, and audio from simple inputs like text or static images","auth_methods":["API key"],"access":"self_serve","access_note":"free dev sandbox","api_surface":"broad REST, 50+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://mindcloud.co/docs/universal/rest/higgsfield-ai/latest/introduction/authentication","confidence":"high","needs_manual_review":false},{"id":98,"name":"Mermaid CLI","category":"AI, Research and Media-native","one_liner":"mermaid CLI has been moved to mermaid-cli, please read its documentation instead","auth_methods":["Token"],"access":"gated_admin_approval","access_note":"login credentials","api_surface":"broad REST","existing_mcp":false,"buildable_verdict":"blocked","main_blocker":"instructions require authentication at https://datamermaid.org/documentation/mermaid-api","evidence_url":"https://datamermaid.org/documentation/mermaid-api","confidence":"medium","needs_manual_review":false},{"id":99,"name":"YouTube Transcript","category":"AI, Research and Media-native","one_liner":"Reliable access to YouTube data to retrieve transcript data in real-time for applications.","auth_methods":["API key"],"access":"self_serve","access_note":"free, scales to zero","api_surface":"broad REST, base URL is https://api.supadata.ai/v1","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://transcriptapi.com/blog/youtube-transcript-api-complete-developer-guide","confidence":"high","needs_manual_review":false},{"id":100,"name":"Grain","category":"AI, Research and Media-native","one_liner":"Grain provides an API for connecting to its services through MindCloud's Universal API","auth_methods":["OAuth2","API key"],"access":"self_serve","access_note":null,"api_surface":"broad REST, 3,100+ endpoints","existing_mcp":false,"buildable_verdict":"buildable_now","main_blocker":null,"evidence_url":"https://mindcloud.co/docs/universal/rest/grain/latest/introduction/authentication","confidence":"high","needs_manual_review":false}]
+;
+
+function pct(n, total) { return total ? Math.round((n / total) * 1000) / 10 : 0; }
+
+function fmtAccess(a) {
+  const map = { self_serve: "Self-serve", gated_paid: "Gated (paid)", gated_partnership: "Gated (partner)", gated_admin_approval: "Gated (admin)", unknown: "Unknown" };
+  return map[a] || a;
+}
+function fmtVerdict(v) {
+  const map = { buildable_now: "Now", buildable_with_workaround: "Workaround", blocked: "Blocked" };
+  return map[v] || v;
+}
+
+// ---- exclude iPayX (#85) from headline stats, per verification findings ----
+const usable = DATA.filter(d => d.id !== 85);
+
+// ---- hero stats ----
+const total = usable.length;
+const selfServeCount = usable.filter(d => d.access === "self_serve").length;
+const buildableNowCount = usable.filter(d => d.buildable_verdict === "buildable_now").length;
+const mcpTrueCount = usable.filter(d => d.existing_mcp === true).length;
+document.getElementById("hero-stats").innerHTML = `
+  <div class="stat"><div class="num">${total}</div><div class="label">apps researched</div></div>
+  <div class="stat"><div class="num">${pct(selfServeCount,total)}%</div><div class="label">self-serve access</div></div>
+  <div class="stat"><div class="num">${pct(buildableNowCount,total)}%</div><div class="label">buildable right now</div></div>
+  <div class="stat"><div class="num">${mcpTrueCount}</div><div class="label">confirmed existing MCP</div></div>
+`;
+
+// ---- category gate bars ----
+const categoryOrder = ["CRM and Sales", "Support and Helpdesk", "Communications and Messaging", "Marketing, Ads, Email and Social", "Ecommerce", "Data, SEO and Scraping", "Developer, Infra and Data platforms", "Productivity and Project Management", "Finance and Fintech", "AI, Research and Media-native"];
+const gatebarsEl = document.getElementById("gatebars");
+categoryOrder.forEach(cat => {
+  const rows = usable.filter(d => d.category === cat);
+  if (!rows.length) return;
+  const n = rows.length;
+  const self = rows.filter(d => d.access === "self_serve").length;
+  const gated = rows.filter(d => ["gated_paid","gated_partnership","gated_admin_approval"].includes(d.access)).length;
+  const blocked = rows.filter(d => d.buildable_verdict === "blocked" && d.access !== "self_serve").length;
+  const unknown = n - self - gated - blocked;
+  const row = document.createElement("div");
+  row.className = "gaterow";
+  row.innerHTML = `
+    <div class="cat-name">${cat}</div>
+    <div class="gatebar">
+      <div class="seg seg-self" style="width:${pct(self,n)}%"></div>
+      <div class="seg seg-gated" style="width:${pct(gated,n)}%"></div>
+      <div class="seg seg-blocked" style="width:${pct(blocked,n)}%"></div>
+      <div class="seg seg-unknown" style="width:${pct(unknown,n)}%"></div>
+    </div>
+    <div class="pct">${pct(self,n)}% self-serve</div>
+  `;
+  gatebarsEl.appendChild(row);
+});
+
+// ---- verification list ----
+const verifyItems = [
+  ["97", "Records where the model's returned id didn't match the seed — not model unreliability: the prompt never included app.id, so the model had nothing real to echo. Fixed by trusting the seed id directly; a future run should stamp id from the seed post-hoc instead of asking the model for it.",],
+  ["2", "Parse errors from truncated or malformed model output — manually reconstructed from salvageable fields"],
+  ["2", "auth_methods returned as a bare string instead of a list — normalized for downstream aggregation"],
+  ["2", "Invalid enum values outside the schema (access: \"gated\", buildable_verdict: \"unknown\") — remapped or flagged"],
+  ["1", "Internal contradiction: self-serve access paired with a blocked verdict — traced to the excluded iPayX record"],
+];
+const vl = document.getElementById("verify-list");
+verifyItems.forEach(([count, text]) => {
+  const li = document.createElement("li");
+  li.innerHTML = `<span class="v-count">${count}</span><span>${text}</span>`;
+  vl.appendChild(li);
+});
+
+// ---- table ----
+let sortKey = "id";
+let sortDir = 1;
+let activeCategory = "";
+let activeAccess = "";
+let searchTerm = "";
+
+const catSelect = document.getElementById("filter-category");
+[...new Set(DATA.map(d => d.category))].sort().forEach(c => {
+  const opt = document.createElement("option");
+  opt.value = c; opt.textContent = c;
+  catSelect.appendChild(opt);
+});
+
+function renderTable() {
+  let rows = DATA.filter(d => {
+    if (activeCategory && d.category !== activeCategory) return false;
+    if (activeAccess && d.access !== activeAccess) return false;
+    if (searchTerm && !d.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+    return true;
+  });
+  rows.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (av === null || av === undefined) av = "";
+    if (bv === null || bv === undefined) bv = "";
+    if (typeof av === "string") av = av.toLowerCase();
+    if (typeof bv === "string") bv = bv.toLowerCase();
+    if (av < bv) return -1 * sortDir;
+    if (av > bv) return 1 * sortDir;
+    return 0;
+  });
+
+  document.getElementById("count-note").textContent = `${rows.length} / ${DATA.length} shown`;
+
+  const tbody = document.getElementById("table-body");
+  tbody.innerHTML = rows.map(d => `
+    <tr>
+      <td>
+        <span class="app-name">${d.name}</span>
+        ${d.needs_manual_review ? '<span class="review-flag"> ⚠ needs review</span>' : ''}
+        <span class="app-oneliner">${d.one_liner || ""}</span>
+      </td>
+      <td>${d.category}</td>
+      <td><span class="pill pill-${d.access}">${fmtAccess(d.access)}</span></td>
+      <td><span class="pill pill-${d.buildable_verdict}">${fmtVerdict(d.buildable_verdict)}</span></td>
+      <td>${d.existing_mcp === true ? "Yes" : d.existing_mcp === false ? "No" : "Unknown"}</td>
+      <td>${d.confidence}</td>
+      <td>${d.evidence_url ? `<a class="ev-link" href="${d.evidence_url}" target="_blank" rel="noopener">source ↗</a>` : "—"}</td>
+    </tr>
+  `).join("");
+}
+
+document.querySelectorAll("thead th[data-key]").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.key;
+    if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+    document.querySelectorAll("thead th .arrow").forEach(a => a.textContent = "");
+    th.querySelector(".arrow").textContent = sortDir === 1 ? "↑" : "↓";
+    renderTable();
+  });
+});
+catSelect.addEventListener("change", e => { activeCategory = e.target.value; renderTable(); });
+document.getElementById("filter-access").addEventListener("change", e => { activeAccess = e.target.value; renderTable(); });
+document.getElementById("search-box").addEventListener("input", e => { searchTerm = e.target.value; renderTable(); });
+
+renderTable();
+</script>
+</body>
+</html>

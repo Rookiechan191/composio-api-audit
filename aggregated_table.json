@@ -1,0 +1,1342 @@
+[
+  {
+    "id":1,
+    "name":"Salesforce",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":2,
+    "name":"HubSpot",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":3,
+    "name":"Pipedrive",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":4,
+    "name":"Attio",
+    "category":"CRM and Sales",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":5,
+    "name":"Twenty",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":6,
+    "name":"Podio",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":7,
+    "name":"Zoho CRM",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":8,
+    "name":"Close",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key",
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":9,
+    "name":"Copper",
+    "category":"CRM and Sales",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":10,
+    "name":"DealCloud",
+    "category":"CRM and Sales",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "API key",
+      "Client ID",
+      "Client secret"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":11,
+    "name":"Zendesk",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":12,
+    "name":"Intercom",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":13,
+    "name":"Freshdesk",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":14,
+    "name":"Front",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "Bearer token",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":15,
+    "name":"Pylon",
+    "category":"Support and Helpdesk",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":16,
+    "name":"LiveAgent",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":17,
+    "name":"Plain",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":18,
+    "name":"Help Scout",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":19,
+    "name":"Gorgias",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "Basic",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":20,
+    "name":"Gladly",
+    "category":"Support and Helpdesk",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":21,
+    "name":"Slack",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":22,
+    "name":"Twilio",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "Basic",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":23,
+    "name":"Zoho Cliq",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":24,
+    "name":"Lark (Larksuite)",
+    "category":"Communications and Messaging",
+    "access":"unknown",
+    "auth_methods":[
+      "Unknown"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":false,
+    "confidence":"low",
+    "needs_manual_review":false
+  },
+  {
+    "id":25,
+    "name":"Pumble",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":26,
+    "name":"Discord",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":27,
+    "name":"Telegram",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "Bot Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":28,
+    "name":"WhatsApp Business",
+    "category":"Communications and Messaging",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":29,
+    "name":"Aircall",
+    "category":"Communications and Messaging",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":30,
+    "name":"Vonage",
+    "category":"Communications and Messaging",
+    "access":"gated_paid",
+    "auth_methods":[
+      "Basic",
+      "JWT",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":false,
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":31,
+    "name":"Google Ads",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":32,
+    "name":"Meta Ads",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"gated_paid",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":33,
+    "name":"LinkedIn Ads",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":34,
+    "name":"GoHighLevel",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":35,
+    "name":"Mailchimp",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key",
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":36,
+    "name":"Klaviyo",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":37,
+    "name":"systeme.io",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":38,
+    "name":"Pinterest",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"gated_paid",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":39,
+    "name":"Threads",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"unknown",
+    "auth_methods":[
+      "Unknown"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":false,
+    "confidence":"low",
+    "needs_manual_review":false
+  },
+  {
+    "id":40,
+    "name":"SendGrid",
+    "category":"Marketing, Ads, Email and Social",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":41,
+    "name":"Shopify",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":42,
+    "name":"WooCommerce",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":43,
+    "name":"BigCommerce",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":44,
+    "name":"Salesforce Commerce Cloud",
+    "category":"Ecommerce",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":45,
+    "name":"Magento (Adobe Commerce)",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":46,
+    "name":"Squarespace",
+    "category":"Ecommerce",
+    "access":"gated_paid",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":47,
+    "name":"Ecwid",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":48,
+    "name":"Gumroad",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":49,
+    "name":"Amazon Selling Partner",
+    "category":"Ecommerce",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "OAuth2",
+      "Other"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":50,
+    "name":"fanbasis",
+    "category":"Ecommerce",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":51,
+    "name":"DataForSEO",
+    "category":"Data, SEO and Scraping",
+    "access":"self_serve",
+    "auth_methods":[
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":52,
+    "name":"SE Ranking",
+    "category":"Data, SEO and Scraping",
+    "access":"gated_paid",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":53,
+    "name":"Ahrefs",
+    "category":"Data, SEO and Scraping",
+    "access":"unknown",
+    "auth_methods":[
+      "Unknown"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":"unknown",
+    "confidence":"low",
+    "needs_manual_review":true
+  },
+  {
+    "id":54,
+    "name":"MrScraper",
+    "category":"Data, SEO and Scraping",
+    "access":"unknown",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":55,
+    "name":"Apify",
+    "category":"Data, SEO and Scraping",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":56,
+    "name":"Firecrawl",
+    "category":"Data, SEO and Scraping",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":57,
+    "name":"Bright Data",
+    "category":"Data, SEO and Scraping",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":58,
+    "name":"Sherlock",
+    "category":"Data, SEO and Scraping",
+    "access":"unknown",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":false,
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":59,
+    "name":"Waterfall.io",
+    "category":"Data, SEO and Scraping",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":60,
+    "name":"Clay",
+    "category":"Data, SEO and Scraping",
+    "access":"unknown",
+    "auth_methods":[
+      "API key",
+      "Token",
+      "Other"
+    ],
+    "buildable_verdict":"buildable_with_workaround",
+    "existing_mcp":"unknown",
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":61,
+    "name":"GitHub",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":62,
+    "name":"Vercel",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":63,
+    "name":"Netlify",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":64,
+    "name":"Cloudflare",
+    "category":"Developer, Infra and Data platforms",
+    "access":"gated_paid",
+    "auth_methods":[
+      "API key",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":65,
+    "name":"Supabase",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "password",
+      "magic link",
+      "one-time password (OTP)",
+      "social login",
+      "SAML (single sign-on)"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":66,
+    "name":"Neo4j",
+    "category":"Developer, Infra and Data platforms",
+    "access":"gated_paid",
+    "auth_methods":[
+      "OAuth2",
+      "API key",
+      "Basic",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":67,
+    "name":"Snowflake",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":68,
+    "name":"MongoDB Atlas",
+    "category":"Developer, Infra and Data platforms",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":69,
+    "name":"Datadog",
+    "category":"Developer, Infra and Data platforms",
+    "access":"gated_paid",
+    "auth_methods":[
+      "Token",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":70,
+    "name":"Sentry",
+    "category":"Developer, Infra and Data platforms",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":72,
+    "name":"Airtable",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key",
+      "Unknown"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":73,
+    "name":"Linear",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":74,
+    "name":"Jira",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "Basic"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":75,
+    "name":"Asana",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":76,
+    "name":"Monday.com",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "Token",
+      "Seamless Authentication using Monday SDK"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":77,
+    "name":"ClickUp",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":78,
+    "name":"Coda",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key",
+      "Other"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":79,
+    "name":"Smartsheet",
+    "category":"Productivity and Project Management",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":80,
+    "name":"Harvest",
+    "category":"Productivity and Project Management",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":81,
+    "name":"Stripe",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "Unknown"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":82,
+    "name":"Plaid",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "Database Auth"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":83,
+    "name":"Binance",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":84,
+    "name":"Paygent Connect",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":85,
+    "name":"iPayX",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":false,
+    "confidence":"low",
+    "needs_manual_review":true
+  },
+  {
+    "id":86,
+    "name":"QuickBooks",
+    "category":"Finance and Fintech",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":87,
+    "name":"Xero",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":88,
+    "name":"Brex",
+    "category":"Finance and Fintech",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key",
+      "OAuth2"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":89,
+    "name":"Ramp",
+    "category":"Finance and Fintech",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "Basic"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":false,
+    "confidence":"low",
+    "needs_manual_review":false
+  },
+  {
+    "id":90,
+    "name":"PitchBook",
+    "category":"Finance and Fintech",
+    "access":"gated_paid",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":91,
+    "name":"NotebookLM",
+    "category":"AI, Research and Media-native",
+    "access":"gated_partnership",
+    "auth_methods":[
+      "Other"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":92,
+    "name":"Otter AI",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "Basic",
+      "Token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":93,
+    "name":"Fathom",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":"unknown",
+    "confidence":"low",
+    "needs_manual_review":false
+  },
+  {
+    "id":95,
+    "name":"Reducto",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":96,
+    "name":"Devin",
+    "category":"AI, Research and Media-native",
+    "access":"gated_paid",
+    "auth_methods":[
+      "Principal + token"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":true,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":97,
+    "name":"higgsfield",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":98,
+    "name":"Mermaid CLI",
+    "category":"AI, Research and Media-native",
+    "access":"gated_admin_approval",
+    "auth_methods":[
+      "Token"
+    ],
+    "buildable_verdict":"blocked",
+    "existing_mcp":false,
+    "confidence":"medium",
+    "needs_manual_review":false
+  },
+  {
+    "id":99,
+    "name":"YouTube Transcript",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  },
+  {
+    "id":100,
+    "name":"Grain",
+    "category":"AI, Research and Media-native",
+    "access":"self_serve",
+    "auth_methods":[
+      "OAuth2",
+      "API key"
+    ],
+    "buildable_verdict":"buildable_now",
+    "existing_mcp":false,
+    "confidence":"high",
+    "needs_manual_review":false
+  }
+]

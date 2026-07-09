@@ -1,0 +1,688 @@
+[
+  {
+    "id": 1,
+    "name": "Salesforce",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "HubSpot",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Pipedrive",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Attio",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 20,
+    "name": "Twenty",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Podio",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Zoho CRM",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Close",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Copper",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "DealCloud",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Zendesk",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Intercom",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Freshdesk",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Front",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Pylon",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "LiveAgent",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Plain",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Help Scout",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Gorgias",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 0,
+    "name": "Gladly",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Slack",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Twilio",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Zoho Cliq",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Lark (Larksuite)",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Pumble",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Discord",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Telegram",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "WhatsApp Business",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Aircall",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Vonage",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Google Ads",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Meta Ads",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "LinkedIn Ads",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "GoHighLevel",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Mailchimp",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Klaviyo",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "systeme.io",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Pinterest",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 0,
+    "name": "Threads",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "SendGrid",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Shopify",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "WooCommerce",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "BigCommerce",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Salesforce Commerce Cloud",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Magento (Adobe Commerce)",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Squarespace",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Ecwid",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Gumroad",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Amazon Selling Partner",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "fanbasis",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "DataForSEO",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "SE Ranking",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Ahrefs",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "MrScraper",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Apify",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Firecrawl",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Bright Data",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Sherlock",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Waterfall.io",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Clay",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "GitHub",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Vercel",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Netlify",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Cloudflare",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 123456,
+    "name": "Supabase",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Neo4j",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1234,
+    "name": "Snowflake",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "MongoDB Atlas",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 12345,
+    "name": "Datadog",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Sentry",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Airtable",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Linear",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Jira",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Asana",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Monday.com",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "ClickUp",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Coda",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 0,
+    "name": "Smartsheet",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Harvest",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Stripe",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Plaid",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 0,
+    "name": "Binance",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Paygent Connect",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1234,
+    "name": "iPayX",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 12345,
+    "name": "QuickBooks",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Xero",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Brex",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Ramp",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "PitchBook",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 12345,
+    "name": "NotebookLM",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Otter AI",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1,
+    "name": "Fathom",
+    "pass1_guessed_existing_mcp": "unknown",
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 12345,
+    "name": "Reducto",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "Devin",
+    "pass1_guessed_existing_mcp": true,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 0,
+    "name": "higgsfield",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 0,
+    "name": "Mermaid CLI",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  },
+  {
+    "id": 1,
+    "name": "YouTube Transcript",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": true,
+    "agrees_with_pass1": false
+  },
+  {
+    "id": 1234,
+    "name": "Grain",
+    "pass1_guessed_existing_mcp": false,
+    "composio_registry_has_toolkit": false,
+    "agrees_with_pass1": true
+  }
+]

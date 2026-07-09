@@ -1,0 +1,106 @@
+104 changes made across 100 records
+
+[2] HubSpot: id 1 -> 2
+[3] Pipedrive: id 1 -> 3
+[4] Attio: id 1 -> 4
+[5] Twenty: id 20 -> 5
+[6] Podio: id 1 -> 6
+[7] Zoho CRM: id 1 -> 7
+[8] Close: id 1 -> 8
+[9] Copper: id 1 -> 9
+[10] DealCloud: id 1 -> 10
+[11] Zendesk: id 1 -> 11
+[12] Intercom: id 1 -> 12
+[13] Freshdesk: id 1 -> 13
+[14] Front: id 1 -> 14
+[15] Pylon: id 1 -> 15
+[16] LiveAgent: id 1 -> 16
+[17] Plain: id 1 -> 17
+[18] Help Scout: id 1 -> 18
+[19] Gorgias: id 1 -> 19
+[20] Gladly: id 0 -> 20
+[21] Slack: id 1 -> 21
+[22] Twilio: id 1 -> 22
+[23] Zoho Cliq: id 1 -> 23
+[24] Lark (Larksuite): id 1 -> 24
+[25] Pumble: id 1 -> 25
+[26] Discord: id 1 -> 26
+[27] Telegram: id 1 -> 27
+[28] WhatsApp Business: id 1 -> 28
+[29] Aircall: id 1 -> 29
+[30] Vonage: id 1 -> 30
+[31] Google Ads: id 1 -> 31
+[32] Meta Ads: id 1 -> 32
+[33] LinkedIn Ads: id 1 -> 33
+[34] GoHighLevel: id 1 -> 34
+[35] Mailchimp: id 1 -> 35
+[36] Klaviyo: id 1 -> 36
+[37] systeme.io: id 1 -> 37
+[38] Pinterest: id 1 -> 38
+[39] Threads: id 0 -> 39
+[40] SendGrid: id 1 -> 40
+[41] Shopify: id 1 -> 41
+[42] WooCommerce: id 1 -> 42
+[43] BigCommerce: id 1 -> 43
+[44] Salesforce Commerce Cloud: id 1 -> 44
+[45] Magento (Adobe Commerce): id 1 -> 45
+[46] Squarespace: id 1 -> 46
+[47] Ecwid: id 1 -> 47
+[48] Gumroad: id 1 -> 48
+[49] Amazon Selling Partner: id 1 -> 49
+[50] fanbasis: id 1 -> 50
+[51] DataForSEO: id 1 -> 51
+[52] SE Ranking: id 1 -> 52
+[53] Ahrefs: id 1 -> 53
+[53] Ahrefs: buildable_verdict 'unknown' -> 'blocked' (invalid enum, flagged for manual review)
+[54] MrScraper: id 1 -> 54
+[55] Apify: id 1 -> 55
+[56] Firecrawl: id 1 -> 56
+[57] Bright Data: id 1 -> 57
+[58] Sherlock: id 1 -> 58
+[59] Waterfall.io: id 1 -> 59
+[60] Clay: id 1 -> 60
+[61] GitHub: id 1 -> 61
+[62] Vercel: id 1 -> 62
+[63] Netlify: id 1 -> 63
+[64] Cloudflare: id 1 -> 64
+[65] Supabase: id 123456 -> 65
+[66] Neo4j: id 1 -> 66
+[67] Snowflake: id 1234 -> 67
+[68] MongoDB Atlas: id 1 -> 68
+[69] Datadog: id 12345 -> 69
+[70] Sentry: id 1 -> 70
+[71] Notion: kept as needs_manual_fix (parse_error/error stub)
+[72] Airtable: id 1 -> 72
+[73] Linear: id 1 -> 73
+[74] Jira: id 1 -> 74
+[75] Asana: id 1 -> 75
+[76] Monday.com: id 1 -> 76
+[77] ClickUp: id 1 -> 77
+[78] Coda: id 1 -> 78
+[79] Smartsheet: id 0 -> 79
+[80] Harvest: id 1 -> 80
+[81] Stripe: id 1 -> 81
+[82] Plaid: id 1 -> 82
+[83] Binance: id 0 -> 83
+[84] Paygent Connect: id 1 -> 84
+[85] iPayX: id 1234 -> 85
+[86] QuickBooks: id 12345 -> 86
+[86] QuickBooks: access 'gated' -> 'gated_admin_approval' (invalid enum, best-effort remap)
+[87] Xero: id 1 -> 87
+[88] Brex: id 1 -> 88
+[89] Ramp: id 1 -> 89
+[90] PitchBook: id 1 -> 90
+[91] NotebookLM: id 12345 -> 91
+[92] Otter AI: id 1 -> 92
+[93] Fathom: id 1 -> 93
+[94] Consensus: kept as needs_manual_fix (parse_error/error stub)
+[95] Reducto: id 12345 -> 95
+[96] Devin: id 1 -> 96
+[97] higgsfield: id 0 -> 97
+[98] Mermaid CLI: id 0 -> 98
+[98] Mermaid CLI: auth_methods 'Token' -> ['Token']
+[99] YouTube Transcript: id 1 -> 99
+[99] YouTube Transcript: auth_methods 'API key' -> ['API key']
+[100] Grain: id 1234 -> 100
+[85] iPayX: flagged needs_manual_review (likely fabricated, see review_reason)
