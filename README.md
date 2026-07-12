@@ -5,8 +5,6 @@
 and buildability — with real verification loops and an honest account of
 where the agent got it wrong.
 
-**Live page:** [add your GitHub Pages URL here]
-**Repo:** this one
 
 ---
 
